@@ -18,14 +18,29 @@ var ColumnsRouter = Router.createClass([
     {
         route: 'columns.length',
         get: function() {                              //seems like arrow replaces the function callback + returns?
-            console.log('HIT')
-            console.log(db.columns.length)
             return {path:['columns','length'],value : db.columns.length}
-
         }
 
-    }
+    },
+    {
+        // getting the title of all columns in specified range.    db->columns->title
+        route: 'columns[{integers:columnIndexes}]["title"]',
+        get: function(pathSet){
+            var results = [];
+            pathSet.columnIndexes.forEach(function(columnIndex){
 
+                if(db.columns.length > columnIndex){
+                    results.push({
+                        path:['columns',columnIndex,'title'],
+                        value: db.columns[columnIndex].title
+                    })
+
+                }
+
+            })
+            return results
+        }
+    }
 ])
 
 app.use('/model.json',falcorExpress.dataSourceRoute(function(req,res){

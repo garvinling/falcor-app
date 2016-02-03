@@ -13,4 +13,21 @@ function getColumnLength(){
 
 
 
+function getColumnsByRange(idx1,idx2){
+
+
+	model.get(['columns',{from: idx1, to: idx2},'title'])
+		.then(function(response){
+
+			console.log(response.json.columns)
+
+		})
+
+
+}
+
+
+
 getColumnLength()
+
+getColumnsByRange(0,1)
