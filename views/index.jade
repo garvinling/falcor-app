@@ -3,3 +3,10 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+
+
+
+block js_scripts
+  script(src='https://netflix.github.io/falcor/build/falcor.browser.js')
+  script(src='/javascripts/falcor.js')
